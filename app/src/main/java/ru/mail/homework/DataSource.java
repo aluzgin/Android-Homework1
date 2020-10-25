@@ -1,12 +1,11 @@
 package ru.mail.homework;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataSource {
 
     private static final DataSource ourInstance = new DataSource();
-    private final List<Integer> list;
+    private final ArrayList<Integer> list;
 
     private DataSource() {
         list = new ArrayList<>();
@@ -15,10 +14,12 @@ public class DataSource {
             list.add(i);
         }
     }
+
     static DataSource getInstance() {
         return ourInstance;
     }
-    public List<Integer> getData() {
+
+    public ArrayList<Integer> getData() {
         return list;
     }
 }
