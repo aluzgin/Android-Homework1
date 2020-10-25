@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-public class MainActivity extends AppCompatActivity implements NumberViewer {
+public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,9 +19,14 @@ public class MainActivity extends AppCompatActivity implements NumberViewer {
     }
 
     public void fromFragmentData(String number, int color) {
+        Bundle bundle = new Bundle();
+        bundle.putString("number", number);
+        bundle.putInt("color", color);
+        BigNumberFragment fragment = new BigNumberFragment();
+        fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.all_numbers_fragment, BigNumberFragment.newInstance(number, color))
+                .replace(R.id.all_numbers_fragment, fragment)
                 .addToBackStack(null)
                 .commit();
     }

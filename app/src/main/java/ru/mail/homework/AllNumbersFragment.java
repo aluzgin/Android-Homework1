@@ -13,20 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class AllNumbersFragment extends Fragment {
-    private final String NUMBERS_KEY = "numbers";
-    ArrayList<Integer> numbers = DataSource.getInstance().getData();
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.all_numbers_layout, container, false);
-        if (savedInstanceState != null) {
-            numbers = savedInstanceState.getIntegerArrayList(NUMBERS_KEY);
-        }
+        final List<Integer> numbers = DataSource.getInstance().getData();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycle);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.columns)));
@@ -43,10 +38,5 @@ public class AllNumbersFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putIntegerArrayList(NUMBERS_KEY, numbers);
     }
 }

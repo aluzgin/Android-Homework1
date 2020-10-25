@@ -11,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private ArrayList<Integer> mData;
+    private List<Integer> mData;
     private LayoutInflater mInflater;
     private Context context;
 
-    MyAdapter(Context context, ArrayList<Integer> data) {
+    MyAdapter(Context context, List<Integer> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
         this.context = context;
@@ -32,8 +32,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     public void toActivity(String number, int color) {
-        if (context instanceof NumberViewer) {
-            ((NumberViewer) context).fromFragmentData(number, color);
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).fromFragmentData(number, color);
         }
     }
 
